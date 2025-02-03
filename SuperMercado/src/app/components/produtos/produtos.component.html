@@ -1,0 +1,22 @@
+<div>
+    <h2>Gerenciamento de Produtos</h2>
+  
+    <form (ngSubmit)="produto.id ? atualizarProduto() : inserirProduto()">
+      <input type="text" pInputText [(ngModel)]="produto.nome" name="nome" placeholder="Nome do Produto" required />
+      <input type="number" [(ngModel)]="produto.preco" name="preco" placeholder="Preço" required />
+      <label>
+        Disponível:
+        <input type="checkbox" [(ngModel)]="produto.disponivel" name="disponivel" />
+      </label>
+      <button type="submit">{{ produto.id ? 'Atualizar' : 'Adicionar' }}</button>
+    </form>
+
+    <h3>Lista de Produtos</h3>
+    <ul>
+      <li *ngFor="let p of produtos">
+        {{ p.nome }} - R$ {{ p.preco }} - Disponível: {{ p.disponivel ? 'Sim' : 'Não' }}
+        <button (click)="detalharProduto(p.id)">Editar</button>
+        <button (click)="removerProduto(p.id)">Remover</button>
+      </li>
+    </ul>
+    
